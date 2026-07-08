@@ -33,7 +33,7 @@ echo "Setting up isaac ros environment"
 mkdir -p ~/workspaces/isaac_ros-dev/src
 cd ~/workspaces/isaac_ros-dev/src
 
-echo "cloning repo"
+echo "cloning isaac repo"
 git clone -b release-3.2 https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_common.git
 chmod +x isaac_ros_common/scripts/run_dev.sh
 
@@ -42,6 +42,5 @@ echo "export ISAAC_ROS_WS=${HOME}/workspaces/isaac_ros-dev" >> ~/.bashrc
 echo "Done. Run the following to start Isaac ROS:"
 echo "  cd ~/workspaces/isaac_ros-dev/src/isaac_ros_common && ./scripts/run_dev.sh"
 
-echo "Done, execute /isaac_ros_common/scripts/run_dev.sh to start isaac ros"
-
+echo "Additional packages for realsense cameras must be installed within the isaac docker image"
 
