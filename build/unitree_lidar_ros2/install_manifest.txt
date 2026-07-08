@@ -1,6 +1,8 @@
 /home/phom/Projects/sensorPlatform/install/unitree_lidar_ros2/lib/unitree_lidar_ros2/unitree_lidar_ros2_node
 /home/phom/Projects/sensorPlatform/install/unitree_lidar_ros2/share/unitree_lidar_ros2/view.rviz
 /home/phom/Projects/sensorPlatform/install/unitree_lidar_ros2/share/unitree_lidar_ros2/launch.py
+/home/phom/Projects/sensorPlatform/install/unitree_lidar_ros2/share/unitree_lidar_ros2/launch/launch.py
+/home/phom/Projects/sensorPlatform/install/unitree_lidar_ros2/share/unitree_lidar_ros2/launch/__pycache__/launch.cpython-38.pyc
 /home/phom/Projects/sensorPlatform/install/unitree_lidar_ros2/share/ament_index/resource_index/package_run_dependencies/unitree_lidar_ros2
 /home/phom/Projects/sensorPlatform/install/unitree_lidar_ros2/share/ament_index/resource_index/parent_prefix_path/unitree_lidar_ros2
 /home/phom/Projects/sensorPlatform/install/unitree_lidar_ros2/share/unitree_lidar_ros2/environment/ament_prefix_path.sh

@@ -1,2 +1,0 @@
-Invoking command in '/home/phom/Projects/sensorPlatform/build/unitree_lidar_sdk': DEBUGINFOD_URLS=https://debuginfod.archlinux.org /usr/bin/cmake --build /home/phom/Projects/sensorPlatform/build/unitree_lidar_sdk -- -j12 -l12
-Invoked command in '/home/phom/Projects/sensorPlatform/build/unitree_lidar_sdk' returned '0': DEBUGINFOD_URLS=https://debuginfod.archlinux.org /usr/bin/cmake --build /home/phom/Projects/sensorPlatform/build/unitree_lidar_sdk -- -j12 -l12

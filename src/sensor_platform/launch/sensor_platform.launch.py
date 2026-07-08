@@ -1,6 +1,6 @@
 import os
 import re
-import datetime
+from datetime import datetime
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch_ros.actions import Node
@@ -40,17 +40,18 @@ def realsense_node(serial, camera_name):
             {
                 "serial_no": serial,
                 # Disabled to avoid permission errors.
-                # "enable_gyro": False,
-                # "enable_accel": False,
+                "enable_gyro": False,
+                "enable_accel": False,
                 # May need to disable on limited USB bandwidth.
                 # "enable_infra1": True,
                 # "enable_infra2": True,
+                # Fix  some fox glove decompression errors
             }
         ],
     )
 
 
-RECORDED_TOPIC_SUFFIXES = (
+REALSENSE_TOPIC_SUFFIXES = (
     "camera/color/image_raw/compressed",
     "camera/depth/image_rect_raw/compressedDepth",
     "camera/color/camera_info",
@@ -63,10 +64,10 @@ def bag_recorder(camera_names):
     topics = [
         f"/{name}/{suffix}"
         for name in camera_names
-        for suffix in RECORDED_TOPIC_SUFFIXES
+        for suffix in REALSENSE_TOPIC_SUFFIXES
     ]
 
-    lidar_topics = ["/unilidar/cloud"]
+    lidar_topics = ["/unilidar/cloud", "/tf", "/tf_static"]
 
     topics.extend(lidar_topics)
 
@@ -115,4 +116,8 @@ def generate_launch_description():
         }.items(),
     )
     nodes.append(foxglove_launch)
+
+    bag_name, recorder_action = bag_recorder(camera_names)
+    nodes.append(recorder_action)
+
     return LaunchDescription(nodes)

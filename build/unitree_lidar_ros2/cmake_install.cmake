@@ -70,6 +70,10 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/unitree_lidar_ros2" TYPE DIRECTORY FILES "/home/phom/Projects/sensorPlatform/src/unilidar_sdk2/unitree_lidar_ros2/src/unitree_lidar_ros2/launch")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ament_index/resource_index/package_run_dependencies" TYPE FILE FILES "/home/phom/Projects/sensorPlatform/build/unitree_lidar_ros2/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/unitree_lidar_ros2")
 endif()
 

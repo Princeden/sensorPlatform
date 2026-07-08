@@ -8,6 +8,7 @@ setup.py
 ../../build/sensor_platform/sensor_platform.egg-info/requires.txt
 ../../build/sensor_platform/sensor_platform.egg-info/top_level.txt
 ../../build/sensor_platform/sensor_platform.egg-info/zip-safe
+launch/sensor_platform.launch.py
 resource/sensor_platform
 sensor_platform/__init__.py
 test/test_copyright.py

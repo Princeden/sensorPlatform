@@ -25,7 +25,7 @@ find_package(tf2_ros REQUIRED)
 find_package(sensor_msgs REQUIRED)
 
 include_directories(
-  ${PCL_INCLUDE_DIRS} 
+  ${PCL_INCLUDE_DIRS}
   include
   ../../../unitree_lidar_sdk/include
 )
@@ -47,9 +47,9 @@ target_link_libraries( unitree_lidar_ros2_node
 
 ament_target_dependencies(
   unitree_lidar_ros2_node
-  rclcpp std_msgs 
+  rclcpp std_msgs
   sensor_msgs
-  geometry_msgs 
+  geometry_msgs
   tf2_ros
   pcl_conversions
 )
@@ -63,5 +63,8 @@ unitree_lidar_ros2_node
 install(FILES rviz/view.rviz launch/launch.py
   DESTINATION share/${PROJECT_NAME}
 )
-
+install(DIRECTORY
+  launch
+  DESTINATION share/${PROJECT_NAME}
+)
 ament_package()
