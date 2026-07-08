@@ -4,7 +4,10 @@ import datetime
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch_ros.actions import Node
-from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.launch_description_sources import (
+    PythonLaunchDescriptionSource,
+    FrontendLaunchDescriptionSource,
+)
 import subprocess
 from launch.actions import (
     ExecuteProcess,
@@ -101,4 +104,15 @@ def generate_launch_description():
     )
     nodes.append(lidar_launch)
 
+    foxglove_package_share = get_package_share_directory("foxglove_bridge")
+    foxglove_launch = IncludeLaunchDescription(
+        FrontendLaunchDescriptionSource(
+            os.path.join(foxglove_package_share, "launch", "foxglove_bridge_launch.xml")
+        ),
+        launch_arguments={
+            "port": "8765",
+            "address": "0.0.0.0",
+        }.items(),
+    )
+    nodes.append(foxglove_launch)
     return LaunchDescription(nodes)
