@@ -1,0 +1,1 @@
+Invoking command in '/home/phom/Projects/sensorPlatform/build/unitree_lidar_ros2': CMAKE_PREFIX_PATH=/opt/ros/humble DEBUGINFOD_URLS=https://debuginfod.archlinux.org /usr/bin/cmake /home/phom/Projects/sensorPlatform/src/unilidar_sdk2/unitree_lidar_ros2/src/unitree_lidar_ros2 -DCMAKE_INSTALL_PREFIX=/home/phom/Projects/sensorPlatform/install/unitree_lidar_ros2

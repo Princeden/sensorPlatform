@@ -1,0 +1,33 @@
+[0.494s] Invoking command in '/home/phom/Projects/sensorPlatform/src/sensor_platform': DEBUGINFOD_URLS=https://debuginfod.archlinux.org PYTHONPATH=/home/phom/Projects/sensorPlatform/build/sensor_platform/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/phom/Projects/sensorPlatform/install/sensor_platform/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/sensor_platform build --build-base /home/phom/Projects/sensorPlatform/build/sensor_platform/build install --record /home/phom/Projects/sensorPlatform/build/sensor_platform/install.log --single-version-externally-managed install_data
+[0.611s] running egg_info
+[0.611s] creating ../../build/sensor_platform/sensor_platform.egg-info
+[0.611s] writing ../../build/sensor_platform/sensor_platform.egg-info/PKG-INFO
+[0.611s] writing dependency_links to ../../build/sensor_platform/sensor_platform.egg-info/dependency_links.txt
+[0.611s] writing entry points to ../../build/sensor_platform/sensor_platform.egg-info/entry_points.txt
+[0.611s] writing requirements to ../../build/sensor_platform/sensor_platform.egg-info/requires.txt
+[0.611s] writing top-level names to ../../build/sensor_platform/sensor_platform.egg-info/top_level.txt
+[0.612s] writing manifest file '../../build/sensor_platform/sensor_platform.egg-info/SOURCES.txt'
+[0.612s] reading manifest file '../../build/sensor_platform/sensor_platform.egg-info/SOURCES.txt'
+[0.613s] writing manifest file '../../build/sensor_platform/sensor_platform.egg-info/SOURCES.txt'
+[0.613s] running build
+[0.613s] running build_py
+[0.613s] creating /home/phom/Projects/sensorPlatform/build/sensor_platform/build
+[0.613s] creating /home/phom/Projects/sensorPlatform/build/sensor_platform/build/lib
+[0.614s] creating /home/phom/Projects/sensorPlatform/build/sensor_platform/build/lib/sensor_platform
+[0.614s] copying sensor_platform/__init__.py -> /home/phom/Projects/sensorPlatform/build/sensor_platform/build/lib/sensor_platform
+[0.614s] running install
+[0.614s] running install_lib
+[0.614s] creating /home/phom/Projects/sensorPlatform/install/sensor_platform/lib/python3.10/site-packages/sensor_platform
+[0.614s] copying /home/phom/Projects/sensorPlatform/build/sensor_platform/build/lib/sensor_platform/__init__.py -> /home/phom/Projects/sensorPlatform/install/sensor_platform/lib/python3.10/site-packages/sensor_platform
+[0.614s] byte-compiling /home/phom/Projects/sensorPlatform/install/sensor_platform/lib/python3.10/site-packages/sensor_platform/__init__.py to __init__.cpython-310.pyc
+[0.614s] running install_data
+[0.614s] creating /home/phom/Projects/sensorPlatform/install/sensor_platform/share/ament_index
+[0.614s] creating /home/phom/Projects/sensorPlatform/install/sensor_platform/share/ament_index/resource_index
+[0.614s] creating /home/phom/Projects/sensorPlatform/install/sensor_platform/share/ament_index/resource_index/packages
+[0.614s] copying resource/sensor_platform -> /home/phom/Projects/sensorPlatform/install/sensor_platform/share/ament_index/resource_index/packages
+[0.614s] copying package.xml -> /home/phom/Projects/sensorPlatform/install/sensor_platform/share/sensor_platform
+[0.614s] running install_egg_info
+[0.615s] Copying ../../build/sensor_platform/sensor_platform.egg-info to /home/phom/Projects/sensorPlatform/install/sensor_platform/lib/python3.10/site-packages/sensor_platform-0.0.0-py3.10.egg-info
+[0.616s] running install_scripts
+[0.630s] writing list of installed files to '/home/phom/Projects/sensorPlatform/build/sensor_platform/install.log'
+[0.660s] Invoked command in '/home/phom/Projects/sensorPlatform/src/sensor_platform' returned '0': DEBUGINFOD_URLS=https://debuginfod.archlinux.org PYTHONPATH=/home/phom/Projects/sensorPlatform/build/sensor_platform/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/phom/Projects/sensorPlatform/install/sensor_platform/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/sensor_platform build --build-base /home/phom/Projects/sensorPlatform/build/sensor_platform/build install --record /home/phom/Projects/sensorPlatform/build/sensor_platform/install.log --single-version-externally-managed install_data

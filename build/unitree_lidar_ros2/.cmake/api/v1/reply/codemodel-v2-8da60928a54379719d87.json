@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-fa50fb7ee56373e1dc62.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "unitree_lidar_ros2",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-98627c32da3a41386014.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "unitree_lidar_ros2_node::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-unitree_lidar_ros2_node-4375a5d6f0c1f53b4e7a.json",
+					"name" : "unitree_lidar_ros2_node",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "unitree_lidar_ros2_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-unitree_lidar_ros2_uninstall-1da8f19a8f78992e3d9a.json",
+					"name" : "unitree_lidar_ros2_uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/phom/Projects/sensorPlatform/build/unitree_lidar_ros2",
+		"source" : "/home/phom/Projects/sensorPlatform/src/unilidar_sdk2/unitree_lidar_ros2/src/unitree_lidar_ros2"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

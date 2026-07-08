@@ -1,0 +1,84 @@
+[0.215s] Invoking command in '/home/phom/Projects/sensorPlatform/build/unitree_lidar_ros': DEBUGINFOD_URLS=https://debuginfod.archlinux.org /usr/bin/cmake /home/phom/Projects/sensorPlatform/src/unilidar_sdk2/unitree_lidar_ros/src/unitree_lidar_ros -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/home/phom/Projects/sensorPlatform/install/unitree_lidar_ros
+[0.236s] [0mCMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+[0.236s]   Compatibility with CMake < 2.8.12 will be removed from a future version of
+[0.236s]   CMake.
+[0.236s] 
+[0.236s]   Update the VERSION argument <min> value or use a ...<max> suffix to tell
+[0.236s]   CMake that the project does not need compatibility with older versions.
+[0.236s] 
+[0.236s] [0m
+[0.303s] -- The C compiler identification is GNU 11.4.0
+[0.357s] -- The CXX compiler identification is GNU 11.4.0
+[0.362s] -- Detecting C compiler ABI info
+[0.403s] -- Detecting C compiler ABI info - done
+[0.409s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.409s] -- Detecting C compile features
+[0.410s] -- Detecting C compile features - done
+[0.415s] -- Detecting CXX compiler ABI info
+[0.465s] -- Detecting CXX compiler ABI info - done
+[0.477s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.477s] -- Detecting CXX compile features
+[0.478s] -- Detecting CXX compile features - done
+[0.496s] -- Checking for module 'eigen3'
+[0.505s] --   Found eigen3, version 3.4.0
+[0.523s] -- Found Eigen: /usr/include/eigen3 (Required is at least version "3.1") 
+[0.523s] -- Eigen found (include: /usr/include/eigen3, version: 3.4.0)
+[0.593s] -- Checking for module 'flann'
+[0.604s] --   Found flann, version 1.9.1
+[0.633s] -- Found FLANN: /usr/lib/x86_64-linux-gnu/libflann_cpp.so  
+[0.633s] -- FLANN found (include: /usr/include, lib: /usr/lib/x86_64-linux-gnu/libflann_cpp.so)
+[1.508s] -- Checking for module 'libusb-1.0'
+[1.515s] --   Found libusb-1.0, version 1.0.25
+[1.540s] -- Found libusb: /usr/lib/x86_64-linux-gnu/libusb-1.0.so  
+[1.541s] -- OpenNI found (version: 1.5.4.0, include: /usr/include/ni, lib: /usr/lib/libOpenNI.so;libusb::libusb)
+[1.573s] -- OpenNI2 found (version: 2.2.0.33, include: /usr/include/openni2, lib: /usr/lib/x86_64-linux-gnu/libOpenNI2.so;libusb::libusb)
+[1.673s] -- Eigen found (include: /usr/include/eigen3, version: 3.4.0)
+[1.679s] -- OpenNI found (version: 1.5.4.0, include: /usr/include/ni, lib: /usr/lib/libOpenNI.so;libusb::libusb)
+[1.684s] -- OpenNI2 found (version: 2.2.0.33, include: /usr/include/openni2, lib: /usr/lib/x86_64-linux-gnu/libOpenNI2.so;libusb::libusb)
+[1.770s] -- Found Qhull version 8.0.2
+[1.848s] -- OpenNI found (version: 1.5.4.0, include: /usr/include/ni, lib: /usr/lib/libOpenNI.so;libusb::libusb)
+[1.922s] -- Found PCL_COMMON: /usr/lib/x86_64-linux-gnu/libpcl_common.so  
+[1.922s] -- Found PCL_KDTREE: /usr/lib/x86_64-linux-gnu/libpcl_kdtree.so  
+[1.923s] -- Found PCL_OCTREE: /usr/lib/x86_64-linux-gnu/libpcl_octree.so  
+[1.923s] -- Found PCL_SEARCH: /usr/lib/x86_64-linux-gnu/libpcl_search.so  
+[1.924s] -- Found PCL_SAMPLE_CONSENSUS: /usr/lib/x86_64-linux-gnu/libpcl_sample_consensus.so  
+[1.924s] -- Found PCL_FILTERS: /usr/lib/x86_64-linux-gnu/libpcl_filters.so  
+[1.924s] -- Found PCL_2D: /usr/include/pcl-1.12  
+[1.925s] -- Found PCL_GEOMETRY: /usr/include/pcl-1.12  
+[1.925s] -- Found PCL_IO: /usr/lib/x86_64-linux-gnu/libpcl_io.so  
+[1.925s] -- Found PCL_FEATURES: /usr/lib/x86_64-linux-gnu/libpcl_features.so  
+[1.926s] -- Found PCL_ML: /usr/lib/x86_64-linux-gnu/libpcl_ml.so  
+[1.926s] -- Found PCL_SEGMENTATION: /usr/lib/x86_64-linux-gnu/libpcl_segmentation.so  
+[1.927s] -- Found PCL_VISUALIZATION: /usr/lib/x86_64-linux-gnu/libpcl_visualization.so  
+[1.927s] -- Found PCL_SURFACE: /usr/lib/x86_64-linux-gnu/libpcl_surface.so  
+[1.927s] -- Found PCL_REGISTRATION: /usr/lib/x86_64-linux-gnu/libpcl_registration.so  
+[1.928s] -- Found PCL_KEYPOINTS: /usr/lib/x86_64-linux-gnu/libpcl_keypoints.so  
+[1.928s] -- Found PCL_TRACKING: /usr/lib/x86_64-linux-gnu/libpcl_tracking.so  
+[1.928s] -- Found PCL_RECOGNITION: /usr/lib/x86_64-linux-gnu/libpcl_recognition.so  
+[1.929s] -- Found PCL_STEREO: /usr/lib/x86_64-linux-gnu/libpcl_stereo.so  
+[1.929s] -- Found PCL_APPS: /usr/lib/x86_64-linux-gnu/libpcl_apps.so  
+[1.929s] -- Found PCL_IN_HAND_SCANNER: /usr/include/pcl-1.12  
+[1.929s] -- Found PCL_MODELER: /usr/include/pcl-1.12  
+[1.930s] -- Found PCL_POINT_CLOUD_EDITOR: /usr/include/pcl-1.12  
+[1.930s] -- Found PCL_OUTOFCORE: /usr/lib/x86_64-linux-gnu/libpcl_outofcore.so  
+[1.930s] -- Found PCL_PEOPLE: /usr/lib/x86_64-linux-gnu/libpcl_people.so  
+[1.942s] [31mCMake Error at CMakeLists.txt:11 (find_package):
+[1.943s]   By not providing "Findcatkin.cmake" in CMAKE_MODULE_PATH this project has
+[1.943s]   asked CMake to find a package configuration file provided by "catkin", but
+[1.943s]   CMake did not find one.
+[1.943s] 
+[1.943s]   Could not find a package configuration file provided by "catkin" with any
+[1.943s]   of the following names:
+[1.943s] 
+[1.943s]     catkinConfig.cmake
+[1.943s]     catkin-config.cmake
+[1.943s] 
+[1.943s]   Add the installation prefix of "catkin" to CMAKE_PREFIX_PATH or set
+[1.943s]   "catkin_DIR" to a directory containing one of the above files.  If "catkin"
+[1.943s]   provides a separate development package or SDK, be sure it has been
+[1.943s]   installed.
+[1.943s] 
+[1.943s] [0m
+[1.943s] -- Configuring incomplete, errors occurred!
+[1.943s] See also "/home/phom/Projects/sensorPlatform/build/unitree_lidar_ros/CMakeFiles/CMakeOutput.log".
+[1.951s] Invoked command in '/home/phom/Projects/sensorPlatform/build/unitree_lidar_ros' returned '1': DEBUGINFOD_URLS=https://debuginfod.archlinux.org /usr/bin/cmake /home/phom/Projects/sensorPlatform/src/unilidar_sdk2/unitree_lidar_ros/src/unitree_lidar_ros -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/home/phom/Projects/sensorPlatform/install/unitree_lidar_ros
