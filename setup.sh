@@ -29,6 +29,21 @@ sudo jq '. + {"default-runtime": "nvidia"}' /etc/docker/daemon.json | \
     sudo mv /etc/docker/daemon.json.tmp /etc/docker/daemon.json
 echo "Done setting up docker"
 
+echo "Installing firefox"
+sudo snap remove firefox || true
+sudo apt purge firefox -y
+sudo add-apt-repository -y ppa:mozillateam/ppa
+sudo tee /etc/apt/preferences.d/mozillafirefoxppa > /dev/null <<EOF
+Package: firefox*
+Pin: release o=LP-PPA-mozillateam
+Pin-Priority: 501
+Package: firefox*
+Pin: release o=Ubuntu
+Pin-Priority: -1
+EOF
+sudo apt update
+sudo apt install firefox -y
+
 echo "Setting up isaac ros environment"
 mkdir -p ~/workspaces/isaac_ros-dev/src
 cd ~/workspaces/isaac_ros-dev/src
