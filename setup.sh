@@ -29,11 +29,26 @@ sudo jq '. + {"default-runtime": "nvidia"}' /etc/docker/daemon.json | \
     sudo mv /etc/docker/daemon.json.tmp /etc/docker/daemon.json
 echo "Done setting up docker"
 
+echo "Installing firefox"
+sudo snap remove firefox || true
+sudo apt purge firefox -y
+sudo add-apt-repository -y ppa:mozillateam/ppa
+sudo tee /etc/apt/preferences.d/mozillafirefoxppa > /dev/null <<EOF
+Package: firefox*
+Pin: release o=LP-PPA-mozillateam
+Pin-Priority: 501
+Package: firefox*
+Pin: release o=Ubuntu
+Pin-Priority: -1
+EOF
+sudo apt update
+sudo apt install firefox -y
+
 echo "Setting up isaac ros environment"
 mkdir -p ~/workspaces/isaac_ros-dev/src
 cd ~/workspaces/isaac_ros-dev/src
 
-echo "cloning repo"
+echo "cloning isaac repo"
 git clone -b release-3.2 https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_common.git
 chmod +x isaac_ros_common/scripts/run_dev.sh
 
@@ -42,6 +57,5 @@ echo "export ISAAC_ROS_WS=${HOME}/workspaces/isaac_ros-dev" >> ~/.bashrc
 echo "Done. Run the following to start Isaac ROS:"
 echo "  cd ~/workspaces/isaac_ros-dev/src/isaac_ros_common && ./scripts/run_dev.sh"
 
-echo "Done, execute /isaac_ros_common/scripts/run_dev.sh to start isaac ros"
-
+echo "Additional packages for realsense cameras must be installed within the isaac docker image"
 
