@@ -45,7 +45,6 @@ def realsense_node(serial, camera_name):
                 # May need to disable on limited USB bandwidth.
                 # "enable_infra1": True,
                 # "enable_infra2": True,
-                # Fix  some fox glove decompression errors
             }
         ],
     )
