@@ -1,6 +1,7 @@
 import os
 import re
 from datetime import datetime
+import pyzed.sl as sl
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch_ros.actions import Node
@@ -15,7 +16,7 @@ from launch.actions import (
 )
 
 
-def get_serials():
+def get_realsense_serials():
     """Serial numbers of all connected RealSense cameras."""
     try:
         out = subprocess.run(
@@ -29,13 +30,14 @@ def get_serials():
     return re.findall(r"\d{8,}", out)
 
 
-def realsense_node(serial, camera_name):
+def realsense_node(serial):
     """RealSense driver for a single camera."""
+    namespace = f"realsense_{serial}"
     return Node(
         package="realsense2_camera",
         executable="realsense2_camera_node",
         name="camera",
-        namespace=camera_name,
+        namespace=namespace,
         parameters=[
             {
                 "serial_no": serial,
@@ -50,6 +52,45 @@ def realsense_node(serial, camera_name):
     )
 
 
+def get_zed_serials():
+    try:
+        devices = sl.Camera.get_device_list()
+        serials = []
+        for dev in devices:
+            serials.append(dev.serial_number)
+    except:
+        return []
+    return serials
+
+
+def zed_node(serial):
+    namespace = f"zed_{serial}"
+    node = Node(
+        package="zed_wrapper",
+        executable="zed_camera",
+        namespace=namespace,
+        name="zed_node",
+        parameters=[
+            {
+                "serial_number": serial,
+            }
+        ],
+        output="screen",
+    )
+    return node
+
+
+def get_camera_nodes():
+    cameras = []
+    realsense_serials = get_realsense_serials()
+    for serial in realsense_serials:
+        cameras.append(realsense_node(serial))
+    zed_serials = get_zed_serials()
+    for serial in zed_serials:
+        cameras.append(zed_node(serial))
+    return cameras
+
+
 REALSENSE_TOPIC_SUFFIXES = (
     "camera/color/image_raw/compressed",
     "camera/depth/image_rect_raw/compressedDepth",
@@ -60,15 +101,15 @@ REALSENSE_TOPIC_SUFFIXES = (
 
 def bag_recorder(camera_names):
     """Record every camera's color+depth streams; returns (bag_name, action)."""
-    topics = [
+    topics = ["/unilidar/cloud", "/tf", "/tf_static"]
+
+    realsense_topics = [
         f"/{name}/{suffix}"
         for name in camera_names
         for suffix in REALSENSE_TOPIC_SUFFIXES
     ]
 
-    lidar_topics = ["/unilidar/cloud", "/tf", "/tf_static"]
-
-    topics.extend(lidar_topics)
+    topics.extend(realsense_topics)
 
     bag_name = f"sensor_data_{datetime.now():%Y%m%d_%H%M%S}"
 
@@ -91,10 +132,7 @@ def bag_recorder(camera_names):
 def generate_launch_description():
     nodes = []
 
-    serials = get_serials()
-    camera_names = [f"camera_{serial}" for serial in serials]
-    for serial, camera_name in zip(serials, camera_names):
-        nodes.append(realsense_node(serial, camera_name))
+    nodes.extend(get_camera_nodes())
 
     lidar_package_share = get_package_share_directory("unitree_lidar_ros2")
     lidar_launch = IncludeLaunchDescription(
