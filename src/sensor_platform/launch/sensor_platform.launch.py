@@ -58,7 +58,8 @@ def get_zed_serials():
         serials = []
         for dev in devices:
             serials.append(dev.serial_number)
-    except:
+    except Exception as e:
+        print(f"Failed to detect ZED cameras: {e}")
         return []
     return serials
 
@@ -88,7 +89,8 @@ def get_camera_nodes():
     zed_serials = get_zed_serials()
     for serial in zed_serials:
         cameras.append(zed_node(serial))
-    return cameras
+    camera_names = {"realsense": realsense_serials, "zed": zed_serials}
+    return cameras, camera_names
 
 
 REALSENSE_TOPIC_SUFFIXES = (
@@ -98,19 +100,37 @@ REALSENSE_TOPIC_SUFFIXES = (
     "camera/depth/camera_info",
 )
 
+ZED_TOPIC_SUFFIXES = (
+    "left/image_rect_color/compressed",
+    "right/image_rect_color/compressed",
+    "depth/depth_registered/compressedDepth",
+    "left/camera_info",
+    "right/camera_info",
+    "depth/camera_info",
+    "imu/data",
+    "pose",
+    "odom",
+)
+
 
 def bag_recorder(camera_names):
     """Record every camera's color+depth streams; returns (bag_name, action)."""
     topics = ["/unilidar/cloud", "/tf", "/tf_static"]
+    realsense_names = camera_names["realsense"]
+    zed_names = camera_names["zed"]
 
     realsense_topics = [
         f"/{name}/{suffix}"
-        for name in camera_names
+        for name in realsense_names
         for suffix in REALSENSE_TOPIC_SUFFIXES
     ]
 
-    topics.extend(realsense_topics)
+    zed_topics = [
+        f"/{name}/{suffix}" for name in zed_names for suffix in ZED_TOPIC_SUFFIXES
+    ]
 
+    topics.extend(realsense_topics)
+    topics.extend(zed_topics)
     bag_name = f"sensor_data_{datetime.now():%Y%m%d_%H%M%S}"
 
     action = ExecuteProcess(
@@ -131,8 +151,8 @@ def bag_recorder(camera_names):
 
 def generate_launch_description():
     nodes = []
-
-    nodes.extend(get_camera_nodes())
+    camera_nodes, camera_names = get_camera_nodes()
+    nodes.extend(camera_nodes)
 
     lidar_package_share = get_package_share_directory("unitree_lidar_ros2")
     lidar_launch = IncludeLaunchDescription(
