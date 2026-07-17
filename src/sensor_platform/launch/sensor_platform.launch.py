@@ -30,9 +30,8 @@ def get_realsense_serials():
     return re.findall(r"\d{8,}", out)
 
 
-def realsense_node(serial):
+def realsense_node(serial, namespace):
     """RealSense driver for a single camera."""
-    namespace = f"realsense_{serial}"
     return Node(
         package="realsense2_camera",
         executable="realsense2_camera_node",
@@ -51,45 +50,41 @@ def realsense_node(serial):
         ],
     )
 
-
 def get_zed_serials():
     try:
         devices = sl.Camera.get_device_list()
-        serials = []
-        for dev in devices:
-            serials.append(dev.serial_number)
+        return [dev.serial_number for dev in devices]
     except Exception as e:
         print(f"Failed to detect ZED cameras: {e}")
         return []
-    return serials
 
-
-def zed_node(serial):
-    namespace = f"zed_{serial}"
-    node = Node(
-        package="zed_wrapper",
-        executable="zed_camera",
-        namespace=namespace,
-        name="zed_node",
-        parameters=[
-            {
-                "serial_number": serial,
-            }
-        ],
-        output="screen",
+def zed_node(serial, namespace):
+    zed_launch = os.path.join(
+        get_package_share_directory("zed_wrapper"),
+        "launch",
+        "zed_camera.launch.py",
     )
-    return node
 
+    return IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(zed_launch),
+        launch_arguments={
+            "camera_model": "zed2i",
+            "serial_number": str(serial),
+            "camera_name": namespace,
+        }.items(),
+    )
 
 def get_camera_nodes():
     cameras = []
     realsense_serials = get_realsense_serials()
-    for serial in realsense_serials:
-        cameras.append(realsense_node(serial))
+    realsense_names = [f"realsense_{serial}" for serial in realsense_serials]
+    for serial, name in zip(realsense_serials, realsense_names):
+        cameras.append(realsense_node(serial, name))
     zed_serials = get_zed_serials()
-    for serial in zed_serials:
-        cameras.append(zed_node(serial))
-    camera_names = {"realsense": realsense_serials, "zed": zed_serials}
+    zed_names = [f"zed_{serial}" for serial in zed_serials]
+    for serial, name in zip(zed_serials, zed_names):
+        cameras.append(zed_node(serial, name))
+    camera_names = {"realsense": realsense_names, "zed": zed_names}
     return cameras, camera_names
 
 
@@ -153,7 +148,6 @@ def generate_launch_description():
     nodes = []
     camera_nodes, camera_names = get_camera_nodes()
     nodes.extend(camera_nodes)
-
     lidar_package_share = get_package_share_directory("unitree_lidar_ros2")
     lidar_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
