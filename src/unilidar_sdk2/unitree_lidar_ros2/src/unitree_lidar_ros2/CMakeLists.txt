@@ -63,8 +63,6 @@ unitree_lidar_ros2_node
 install(FILES rviz/view.rviz launch/launch.py
   DESTINATION share/${PROJECT_NAME}
 )
-install(DIRECTORY
-  launch
-  DESTINATION share/${PROJECT_NAME}
-)
+
 ament_package()
+

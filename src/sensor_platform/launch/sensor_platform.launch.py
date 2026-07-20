@@ -149,11 +149,13 @@ def generate_launch_description():
     camera_nodes, camera_names = get_camera_nodes()
     nodes.extend(camera_nodes)
     lidar_package_share = get_package_share_directory("unitree_lidar_ros2")
+
     lidar_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(lidar_package_share, "launch", "launch.py")
+            os.path.join(lidar_package_share, "launch.py")
         )
     )
+ 
     nodes.append(lidar_launch)
 
     foxglove_package_share = get_package_share_directory("foxglove_bridge")
