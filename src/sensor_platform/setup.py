@@ -28,6 +28,8 @@ setup(
         ],
     },
     entry_points={
-        "console_scripts": [],
+        "console_scripts": [
+            "pointcloud_transformer = sensor_platform.pointcloud_transformer_node:main"
+            ],
     },
 )
