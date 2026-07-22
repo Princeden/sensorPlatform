@@ -50,6 +50,7 @@ def realsense_node(serial, namespace):
         ],
     )
 
+
 def get_zed_serials():
     try:
         devices = sl.Camera.get_device_list()
@@ -57,6 +58,7 @@ def get_zed_serials():
     except Exception as e:
         print(f"Failed to detect ZED cameras: {e}")
         return []
+
 
 def zed_node(serial, namespace):
     zed_launch = os.path.join(
@@ -73,6 +75,7 @@ def zed_node(serial, namespace):
             "camera_name": namespace,
         }.items(),
     )
+
 
 def get_camera_nodes():
     cameras = []
@@ -151,12 +154,21 @@ def generate_launch_description():
     lidar_package_share = get_package_share_directory("unitree_lidar_ros2")
 
     lidar_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(lidar_package_share, "launch.py")
-        )
+        PythonLaunchDescriptionSource(os.path.join(lidar_package_share, "launch.py"))
     )
- 
+
     nodes.append(lidar_launch)
+
+    transform_node = (
+        Node(
+            package="sensor_platform",
+            executable="pointcloud_transformer",
+            name="pointcloud_transformer_node",
+            output="screen",
+        ),
+    )
+
+    nodes.append(transform_node)
 
     foxglove_package_share = get_package_share_directory("foxglove_bridge")
     foxglove_launch = IncludeLaunchDescription(
