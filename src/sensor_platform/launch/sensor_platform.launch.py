@@ -159,13 +159,11 @@ def generate_launch_description():
 
     nodes.append(lidar_launch)
 
-    transform_node = (
-        Node(
-            package="sensor_platform",
-            executable="pointcloud_transformer",
-            name="pointcloud_transformer_node",
-            output="screen",
-        ),
+    transform_node = Node(
+        package="sensor_platform",
+        executable="pointcloud_transformer",
+        name="pointcloud_transformer_node",
+        output="screen",
     )
 
     nodes.append(transform_node)
