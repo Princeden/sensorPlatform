@@ -52,4 +52,3 @@ def generate_launch_description():
     return LaunchDescription(
         [node1]
     )  # removed rivz node bc visualization w/ fox glovde
-

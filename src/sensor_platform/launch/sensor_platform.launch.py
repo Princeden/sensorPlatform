@@ -16,6 +16,8 @@ from launch.actions import (
     IncludeLaunchDescription,
 )
 
+CAMERA_TYPE = -1  # assuming only one camera is every plugged in
+
 
 def get_realsense_serials():
     """Serial numbers of all connected RealSense cameras."""
@@ -83,11 +85,15 @@ def zed_node(serial, namespace):
 def get_camera_nodes():
     cameras = []
     realsense_serials = get_realsense_serials()
+    if realsense_serials is not None:
+        CAMERA_TYPE = 0
     realsense_names = [f"realsense_{i}" for i in range(len(realsense_serials))]
     for serial, name in zip(realsense_serials, realsense_names):
         cameras.append(realsense_node(serial, name))
     zed_serials = get_zed_serials()
     zed_names = [f"zed_{i}" for i in range(len(zed_serials))]
+    if zed_serials is not None:
+        CAMERA_TYPE = 1
     for serial, name in zip(zed_serials, zed_names):
         cameras.append(zed_node(serial, name))
     print("reminder zed was disabled")
@@ -155,6 +161,7 @@ def generate_launch_description():
     camera_nodes, camera_names = get_camera_nodes()
     nodes.extend(camera_nodes)
     lidar_package_share = get_package_share_directory("unitree_lidar_ros2")
+    lidar_package_share = get_package_share_directory("unitree_lidar_ros2")
 
     lidar_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(lidar_package_share, "launch.py"))
@@ -164,5 +171,33 @@ def generate_launch_description():
 
     bag_name, recorder_action = bag_recorder(camera_names)
     nodes.append(recorder_action)
+    depth_topic = ""
+    image_topic = ""
+    camera_info = ""
+    if CAMERA_TYPE == 0:
+        print("displaying realsense data")
+        prefix = camera_names["realsense"][0]
+        depth_topic = f"{prefix}/camera/aligned_depth_to_color/image_raw"
+        image_topic = f"{prefix}/camera/color/image_raw"
+        camera_info = f"{prefix}/camera/color/camera_info"
+    elif CAMERA_TYPE == 1:
+        print("displaying zed data")
+        prefix = camera_names["zed"][0]
+        depth_topic = f"{prefix}/zed/zed_node/depth/depth_registered"
+        image_topic = f"{prefix}/zed_node/rgb/image_rect_color"
+        camera_info = f"{prefix}/zed_node/rgb/camera_info"
 
+    gui_node = Node(
+        package="rgbd_lidar_calib",
+        executable="rgbd_lidar_calib_gui",
+        output="screen",
+        parameters=[
+            {
+                "image_topic": image_topic,
+                "depth_topic": depth_topic,
+                "camera_info": camera_info,
+            }
+        ],
+    )
+    nodes.append(gui_node)
     return LaunchDescription(nodes)

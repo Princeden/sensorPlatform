@@ -1,3 +1,6 @@
 [submodule "unilidar_sdk2"]
 	path = unilidar_sdk2
 	url = git@github.com:unitreerobotics/unilidar_sdk2.git
+[submodule "src/Sensor_Suite_Outdoor"]
+	path = src/Sensor_Suite_Outdoor
+	url = git@github.com:syedusamabinsabir/Sensor_Suite_Outdoor.git
