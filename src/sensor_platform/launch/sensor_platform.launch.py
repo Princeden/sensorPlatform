@@ -1,6 +1,7 @@
 import os
 import re
 from datetime import datetime
+
 import pyzed.sl as sl
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
@@ -43,6 +44,8 @@ def realsense_node(serial, namespace):
                 # Disabled to avoid permission errors.
                 "enable_gyro": False,
                 "enable_accel": False,
+                "align_depth.enable": "true",
+                "enable_sync": "true",
                 # May need to disable on limited USB bandwidth.
                 # "enable_infra1": True,
                 # "enable_infra2": True,
@@ -80,14 +83,15 @@ def zed_node(serial, namespace):
 def get_camera_nodes():
     cameras = []
     realsense_serials = get_realsense_serials()
-    realsense_names = [f"realsense_{serial}" for serial in realsense_serials]
+    realsense_names = [f"realsense_{i}" for i in range(len(realsense_serials))]
     for serial, name in zip(realsense_serials, realsense_names):
         cameras.append(realsense_node(serial, name))
     zed_serials = get_zed_serials()
-    zed_names = [f"zed_{serial}" for serial in zed_serials]
+    zed_names = [f"zed_{i}" for i in range(len(zed_serials))]
     for serial, name in zip(zed_serials, zed_names):
         cameras.append(zed_node(serial, name))
-    camera_names = {"realsense": realsense_names, "zed": zed_names}
+    print("reminder zed was disabled")
+    camera_names = {"realsense": realsense_names, "zed": []}
     return cameras, camera_names
 
 
@@ -137,7 +141,6 @@ def bag_recorder(camera_names):
             "bag",
             "record",
             "-s",
-            "mcap",
             "-o",
             bag_name,
             *topics,
@@ -167,18 +170,6 @@ def generate_launch_description():
     )
 
     nodes.append(transform_node)
-
-    foxglove_package_share = get_package_share_directory("foxglove_bridge")
-    foxglove_launch = IncludeLaunchDescription(
-        FrontendLaunchDescriptionSource(
-            os.path.join(foxglove_package_share, "launch", "foxglove_bridge_launch.xml")
-        ),
-        launch_arguments={
-            "port": "8765",
-            "address": "0.0.0.0",
-        }.items(),
-    )
-    nodes.append(foxglove_launch)
 
     bag_name, recorder_action = bag_recorder(camera_names)
     nodes.append(recorder_action)
