@@ -162,15 +162,6 @@ def generate_launch_description():
 
     nodes.append(lidar_launch)
 
-    transform_node = Node(
-        package="sensor_platform",
-        executable="pointcloud_transformer",
-        name="pointcloud_transformer_node",
-        output="screen",
-    )
-
-    nodes.append(transform_node)
-
     bag_name, recorder_action = bag_recorder(camera_names)
     nodes.append(recorder_action)
 
